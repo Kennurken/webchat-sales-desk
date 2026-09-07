@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Northline Supply — webchat demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/demo.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">Northline <span>Supply</span></div>
+      <nav class="nav">
+        <span>Catalog</span>
+        <span>Wholesale</span>
+        <span>Support</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Industrial fixtures without the phone tag.</h1>
+        <p>
+          Demo storefront for the webchat sales desk. Open the chat in the corner,
+          type <strong>lead</strong>, and watch the intake save to SQLite + Slack/local notify.
+        </p>
+        <div class="hero-meta">
+          <span class="pill">Website widget</span>
+          <span class="pill">WhatsApp-ready notify</span>
+          <span class="pill">Slack webhook</span>
+          <span class="pill">No Zapier</span>
+        </div>
+      </div>
+      <aside class="side-card">
+        <h2>What buyers ask</h2>
+        <p>Try these in the widget for FAQ matches:</p>
+        <ul>
+          <li>how much does it cost</li>
+          <li>do you support WhatsApp</li>
+          <li>can it ping Slack</li>
+          <li>do I need Zapier</li>
+        </ul>
+      </aside>
+    </section>
+  </div>
+
+  <button class="chat-launcher" id="chat-launcher" type="button">Chat with sales</button>
+  <div class="chat-panel" id="chat-panel" aria-live="polite">
+    <div class="chat-head">
+      <strong>Sales desk</strong>
+      <button id="chat-close" type="button">Close</button>
+    </div>
+    <div class="chat-log" id="chat-log"></div>
+    <form class="chat-form" id="chat-form">
+      <input id="chat-input" type="text" placeholder="Type lead or ask a question" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="/static/widget.js"></script>
+</body>
+</html>

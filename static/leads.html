@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leads — webchat sales desk</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #14212b;
+      --muted: #5b6b78;
+      --paper: #f3efe6;
+      --line: #d9d2c5;
+      --accent: #0f6e56;
+    }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    main { width: min(960px, calc(100% - 2rem)); margin: 2rem auto; }
+    h1 { font-family: Fraunces, Georgia, serif; margin: 0 0 0.4rem; }
+    p { color: var(--muted); margin: 0 0 1.25rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fffdf8;
+      border: 1px solid var(--line);
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.75rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+      vertical-align: top;
+    }
+    th { background: #ebe4d7; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .bar { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
+    a.btn, button {
+      background: var(--accent);
+      color: white;
+      border: 0;
+      padding: 0.55rem 0.9rem;
+      text-decoration: none;
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Captured leads</h1>
+    <p>Live from <code>/api/leads</code> — same DB the widget writes to.</p>
+    <div class="bar">
+      <a class="btn" href="/api/export">Download CSV</a>
+      <a class="btn" href="/">Back to demo site</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>When</th><th>Name</th><th>Email</th><th>Channel</th><th>Interest</th><th>Budget</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script>
+    fetch("/api/leads").then(r => r.json()).then(leads => {
+      const body = document.getElementById("rows");
+      if (!leads.length) {
+        body.innerHTML = "<tr><td colspan=7>No leads yet — use the chat widget or run demo_sim.py</td></tr>";
+        return;
+      }
+      body.innerHTML = leads.map(l => `
+        <tr>
+          <td>#${l.id}</td>
+          <td>${l.created_at}</td>
+          <td>${l.visitor_name}</td>
+          <td>${l.email}</td>
+          <td>${l.channel}</td>
+          <td>${l.interest}</td>
+          <td>${l.budget}</td>
+        </tr>
+      `).join("");
+    });
+  </script>
+</body>
+</html>

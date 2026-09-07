@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slack notify mock</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #1a1d21;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: #d1d2d3;
+    }
+    .card {
+      width: min(480px, calc(100% - 2rem));
+      background: #222529;
+      border: 1px solid #3f4450;
+      border-radius: 8px;
+      padding: 1rem 1.1rem 1.2rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    }
+    .row { display: flex; gap: 0.75rem; }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #0f6e56; color: white;
+      display: grid; place-items: center; font-weight: 700;
+      flex: 0 0 auto;
+    }
+    .meta { font-size: 0.85rem; margin-bottom: 0.35rem; }
+    .meta strong { color: #fff; margin-right: 0.4rem; }
+    .meta span { color: #ababad; }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      font: 0.92rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #e8e8e8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="row">
+      <div class="avatar">N</div>
+      <div>
+        <div class="meta"><strong>northline-bot</strong><span>App  ·  Just now</span></div>
+        <pre>New webchat lead #1
+Name: Jordan Lee
+Email: jordan@northwind.example
+Preferred channel: whatsapp
+Interest: Website chat that also pings WhatsApp for sales
+Budget: $150-250</pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

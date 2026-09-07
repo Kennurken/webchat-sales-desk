@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/*.db
+data/notify_log.jsonl
+.DS_Store
+AGENTS.md
+data/*.db-shm
+data/*.db-wal
+data/*.csv

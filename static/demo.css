@@ -1,0 +1,236 @@
+:root {
+  --ink: #14212b;
+  --muted: #5b6b78;
+  --paper: #f3efe6;
+  --panel: #fffdf8;
+  --accent: #0f6e56;
+  --accent-2: #c45c26;
+  --line: #d9d2c5;
+  --bot: #e7f2ee;
+  --user: #14212b;
+  --shadow: 0 18px 50px rgba(20, 33, 43, 0.12);
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(15, 110, 86, 0.12), transparent 40%),
+    linear-gradient(160deg, #efe8da 0%, var(--paper) 45%, #e4ece8 100%);
+}
+
+.page {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 6rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.brand span { color: var(--accent); }
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: end;
+  min-height: 70vh;
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .nav { display: none; }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem;
+  max-width: 11ch;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.hero-meta {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pill {
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.7);
+  padding: 0.45rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+
+.side-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+
+.side-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+
+.side-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.side-card ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* Chat widget */
+.chat-launcher {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 40;
+  border: 0;
+  background: var(--accent);
+  color: white;
+  padding: 0.9rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.chat-panel {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 4.6rem;
+  width: min(380px, calc(100vw - 1.5rem));
+  height: min(540px, calc(100vh - 6rem));
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: none;
+  grid-template-rows: auto 1fr auto;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.chat-panel.open { display: grid; }
+
+.chat-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: var(--ink);
+  color: #f7f3ea;
+}
+
+.chat-head strong {
+  font-family: var(--font-display);
+  font-weight: 560;
+}
+
+.chat-head button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.chat-log {
+  overflow: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background:
+    linear-gradient(180deg, #fbf8f1, #f4efe5);
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 0.7rem 0.85rem;
+  line-height: 1.4;
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+
+.bubble.bot {
+  align-self: flex-start;
+  background: var(--bot);
+  color: var(--ink);
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background: var(--user);
+  color: #f7f3ea;
+}
+
+.chat-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.chat-form input {
+  border: 1px solid var(--line);
+  padding: 0.7rem 0.75rem;
+  font: inherit;
+}
+
+.chat-form button {
+  border: 0;
+  background: var(--accent-2);
+  color: white;
+  padding: 0 1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
